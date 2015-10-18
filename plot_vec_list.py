@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 def plot_access_times(acc_size, vec_arr, pa_vec_arr, list_arr, pa_list_arr):
@@ -14,15 +16,17 @@ def plot_access_times(acc_size, vec_arr, pa_vec_arr, list_arr, pa_list_arr):
     plt.ylabel('Time in seconds')
 
     plt.show()
+    plt.savefig('vec_list')
 
 def read_access_times(fname)    :
     """Read the access times of vector & list;
     Return respective times as lists"""
 
-    with open(fname) as f:
-        array = []
-        for line in f: # read rest of lines
-            array.append([int(x) for x in line.split()])
+    if fname != "":
+        with open(fname) as f:
+            array = []
+            for line in f: # read rest of lines
+                array.append([int(x) for x in line.split()])
 
     sizes   = [10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000]
     vec     = [6.102e-06, 3.926e-06, 5.442e-06, 4.6759e-05, 0.000159818, 0.00281888, 0.0191507, 0.287412, 1.23868]
